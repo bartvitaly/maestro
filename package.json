@@ -1,0 +1,25 @@
+{
+  "name": "maestro-playwright-sample",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Harbor Lease sample: inventory filter, viewing, tenant application, stop at deposit. Playwright Pixel 7 + iPhone 14. Android Maestro ids, iOS a11y/CDP.",
+  "scripts": {
+    "start": "python3 -m http.server 4173 --bind 127.0.0.1",
+    "serve:demo": "node scripts/serve-demo.mjs",
+    "boot:ios": "node scripts/boot-ios-sim.mjs",
+    "boot:android": "node scripts/boot-android-emu.mjs",
+    "test": "playwright test",
+    "test:all": "npm test && node scripts/test-device.mjs",
+    "test:android": "playwright test --project=android-pixel7",
+    "test:ios": "playwright test --project=ios-iphone14",
+    "test:ios:webkit": "PLAYWRIGHT_IOS_WEBKIT=1 playwright test --project=ios-iphone14",
+    "test:device": "node scripts/test-device.mjs",
+    "test:device:ios": "node scripts/test-device.mjs ios",
+    "test:device:android": "node scripts/test-device.mjs android",
+    "playwright:install": "node scripts/install-browsers.mjs",
+    "probe:devices": "node scripts/device-probe.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.55.1"
+  }
+}

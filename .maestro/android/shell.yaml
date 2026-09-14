@@ -1,0 +1,36 @@
+# Android WebView wrapper — launch the installed APK and smoke the inventory.
+# Run on the online emulator only:
+#   maestro --platform android --device emulator-5554 test .maestro/android/shell.yaml
+# androidWebViewHierarchy: devtools works on newer WebViews; API 24 / pixel_24
+# often fails the DevTools DOM snapshot (Maestro logs "Unexpected token .").
+#
+# Device lane installs android/ (applicationId com.example.listings) and
+# launches that app. Thin WebView around http://10.0.2.2:4173 — not Capacitor
+# / Play Store. Full leasing path in host Chromium: android/shell-web.yaml
+appId: com.example.listings
+androidWebViewHierarchy: devtools
+name: android-lease-application
+tags:
+  - android
+  - smoke
+---
+- launchApp
+- assertVisible:
+    id: "heading-inventory"
+- tapOn:
+    id: "select-city"
+- tapOn: "Bratislava"
+- tapOn:
+    id: "select-beds"
+- tapOn: "2"
+- tapOn:
+    id: "btn-search"
+# 320×640 AVD: unit row is below the filter form.
+- scrollUntilVisible:
+    element: "Open HL-1042"
+    direction: DOWN
+    timeout: 15000
+- assertVisible: "Open HL-1042"
+# Stop. Opening the unit / application form is unreliable on API 24 WebView
+# (tap on the a11y name does not navigate; DevTools ids vanish after search).
+# Full path: maestro test .maestro/android/shell-web.yaml

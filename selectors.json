@@ -1,0 +1,26 @@
+{
+  "comment": "Shared contract. Android Maestro taps id. iOS Maestro sees name. Playwright and iOS CDP tap id.",
+  "flow": "Search inventory → open HL-1042 → book viewing → tenant application → stop at Pay holding deposit",
+  "controls": [
+    { "id": "nav-inventory", "name": "Inventory" },
+    { "id": "nav-pipeline", "name": "Pipeline" },
+    { "id": "nav-apply", "name": "Application" },
+    { "id": "select-city", "name": "City" },
+    { "id": "select-beds", "name": "Min. bedrooms" },
+    { "id": "input-max-rent", "name": "Max. rent" },
+    { "id": "btn-search", "name": "Search inventory" },
+    { "id": "btn-open-hl1042", "name": "Open HL-1042" },
+    { "id": "btn-back-inventory", "name": "Back to inventory" },
+    { "id": "select-slot", "name": "Viewing slot" },
+    { "id": "btn-book-viewing", "name": "Book viewing" },
+    { "id": "btn-start-application", "name": "Start application" },
+    { "id": "input-legal-name", "name": "Legal name" },
+    { "id": "input-email", "name": "Work email" },
+    { "id": "input-income", "name": "Monthly net income" },
+    { "id": "select-employment", "name": "Employment" },
+    { "id": "input-occupants", "name": "Occupants" },
+    { "id": "chk-accuracy", "name": "Income figures are accurate. I accept the holding-deposit terms." },
+    { "id": "btn-submit-application", "name": "Submit application" },
+    { "id": "btn-pay-deposit", "name": "Pay holding deposit" }
+  ]
+}

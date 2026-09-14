@@ -1,0 +1,11 @@
+# Demo workspace.
+# url: flows (android/shell-web.yaml, ios/shell-web.yaml) hit the local static demo
+# in host Chromium. android/shell.yaml launches the installed WebView APK
+# (com.example.listings). ios/shell.yaml launches the installed WKWebView app
+# (com.example.listings).
+# iOS a11y names vs Android DOM ids: Maestro iOS cannot see DOM ids.
+# scripts/test-device.mjs always passes --platform and --device so ios/shell.yaml
+# never attaches to the Android AVD when both runtimes are online.
+flows:
+  - "android/*.yaml"
+  - "ios/*.yaml"

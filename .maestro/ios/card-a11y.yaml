@@ -1,0 +1,18 @@
+# iOS-only card entry by accessible name.
+# On a real Stripe Payment Element, WebKit inspect cannot type into the
+# cross-origin iframe. Maestro keystrokes on "Card number" / "MM / YY" / "CVC"
+# still work. This demo page uses the same labels (no Stripe, no keys).
+url: http://127.0.0.1:4173/card.html
+name: ios-card-a11y
+tags:
+  - ios
+---
+- launchApp
+- tapOn: "Card number"
+- inputText: "4242424242424242"
+- tapOn:
+    text: "MM / YY"
+- inputText: "1234"
+- tapOn: "CVC"
+- inputText: "123"
+- assertVisible: "Card accepted (demo)"

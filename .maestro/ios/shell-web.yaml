@@ -1,0 +1,34 @@
+# Same iOS a11y leasing path against the local static demo.
+# Maestro url: = host Chromium. Device lane installs the WKWebView app
+# (ios/shell.yaml + launchApp, appId com.example.listings).
+# Prefer: npm run serve:demo (0.0.0.0) then npm run test:device:ios
+# Override: maestro test .maestro/ios/shell-web.yaml
+url: http://127.0.0.1:4173
+name: ios-lease-application-web
+tags:
+  - ios
+  - web
+---
+- launchApp
+- assertVisible: "Inventory"
+- tapOn: "City"
+- tapOn: "Bratislava"
+- tapOn: "Min. bedrooms"
+- tapOn: "2"
+- tapOn: "Search inventory"
+- tapOn: "Open HL-1042"
+- tapOn: "Book viewing"
+- tapOn: "Start application"
+- tapOn: "Legal name"
+- inputText: "Ada Kovacs"
+- tapOn: "Work email"
+- inputText: "ada.kovacs@example.com"
+- tapOn: "Monthly net income"
+- inputText: "2400"
+- tapOn: "Employment"
+- tapOn: "Employed"
+- tapOn: "Income figures are accurate. I accept the holding-deposit terms."
+- tapOn: "Submit application"
+- assertVisible: "Pay holding deposit"
+- tapOn: "Pipeline"
+- assertVisible: "HL-1042"

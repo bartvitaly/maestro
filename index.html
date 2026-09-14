@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Harbor Lease — inventory</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="top">
+      <p class="brand" id="lbl-brand">Harbor Lease</p>
+      <p class="eyebrow" id="lbl-desk">Leasing desk · SK / AT</p>
+    </header>
+
+    <main>
+      <section id="panel-inventory" class="panel" data-panel="inventory">
+        <h1 id="heading-inventory">Inventory</h1>
+        <p class="lede" id="lbl-inventory-copy">
+          Live stock for the Bratislava desk. Filter, open a unit, then run the
+          viewing → application → deposit path.
+        </p>
+        <form id="form-search" class="filters">
+          <label for="select-city">City</label>
+          <select id="select-city" name="city" aria-label="City">
+            <option value="all">All cities</option>
+            <option value="BA">Bratislava</option>
+            <option value="VIE">Vienna</option>
+          </select>
+          <label for="select-beds">Min. bedrooms</label>
+          <select id="select-beds" name="beds" aria-label="Min. bedrooms">
+            <option value="0">Any</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </select>
+          <label for="input-max-rent">Max. rent (€)</label>
+          <input
+            id="input-max-rent"
+            name="maxRent"
+            type="number"
+            inputmode="numeric"
+            value="1500"
+            aria-label="Max. rent"
+          />
+          <button type="submit" id="btn-search" aria-label="Search inventory">Search inventory</button>
+        </form>
+        <p id="lbl-result-count" class="meta"></p>
+        <div id="list-inventory"></div>
+      </section>
+
+      <section id="panel-detail" class="panel hidden" data-panel="detail" hidden>
+        <button type="button" id="btn-back-inventory" class="ghost" aria-label="Back to inventory">
+          Back to inventory
+        </button>
+        <p class="ref" id="lbl-detail-ref"></p>
+        <h1 id="heading-detail">Unit</h1>
+        <dl class="facts" id="list-detail-facts"></dl>
+        <p class="compliance" id="lbl-compliance"></p>
+        <label for="select-slot">Viewing slot</label>
+        <select id="select-slot" aria-label="Viewing slot"></select>
+        <button type="button" id="btn-book-viewing" aria-label="Book viewing">Book viewing</button>
+        <p id="lbl-viewing-confirm" class="ok" hidden></p>
+        <button type="button" id="btn-start-application" aria-label="Start application" hidden>
+          Start application
+        </button>
+      </section>
+
+      <section id="panel-pipeline" class="panel hidden" data-panel="pipeline" hidden>
+        <h1 id="heading-pipeline">Pipeline</h1>
+        <p id="lbl-pipeline-empty" class="lede">No open cases. Book a viewing from inventory first.</p>
+        <article id="card-case" class="card hidden" hidden>
+          <p class="ref" id="lbl-case-ref"></p>
+          <h2 id="heading-case-unit"></h2>
+          <p id="lbl-case-status" class="status"></p>
+          <p id="lbl-case-next" class="meta"></p>
+        </article>
+      </section>
+
+      <section id="panel-apply" class="panel hidden" data-panel="apply" hidden>
+        <h1 id="heading-apply">Tenant application</h1>
+        <p id="lbl-apply-unit" class="meta"></p>
+        <form id="form-application">
+          <label for="input-legal-name">Legal name</label>
+          <input id="input-legal-name" name="legalName" autocomplete="name" required />
+          <label for="input-email">Work email</label>
+          <input id="input-email" name="email" type="email" autocomplete="email" required />
+          <label for="input-income">Monthly net income (€)</label>
+          <input
+            id="input-income"
+            name="income"
+            type="number"
+            inputmode="numeric"
+            min="1"
+            required
+            aria-label="Monthly net income"
+          />
+          <label for="select-employment">Employment</label>
+          <select id="select-employment" aria-label="Employment" required>
+            <option value="">Select…</option>
+            <option value="employed">Employed</option>
+            <option value="self">Self-employed</option>
+            <option value="other">Other</option>
+          </select>
+          <label for="input-occupants">Occupants</label>
+          <input
+            id="input-occupants"
+            name="occupants"
+            type="number"
+            inputmode="numeric"
+            min="1"
+            value="1"
+            required
+            aria-label="Occupants"
+          />
+          <label class="check">
+            <input id="chk-accuracy" type="checkbox" />
+            <span>Income figures are accurate. I accept the holding-deposit terms.</span>
+          </label>
+          <p id="lbl-apply-error" class="err" hidden>Complete every field and accept the terms.</p>
+          <button type="submit" id="btn-submit-application" aria-label="Submit application">
+            Submit application
+          </button>
+        </form>
+
+        <div id="panel-deposit" class="card hidden" hidden>
+          <p class="status" id="lbl-deposit-status">Awaiting holding deposit</p>
+          <h2 id="heading-deposit">Holding deposit</h2>
+          <p id="lbl-deposit-amount">€850 · due in 48 hours · refundable if the landlord declines</p>
+          <p id="lbl-deposit-ref" class="ref"></p>
+          <button type="button" id="btn-pay-deposit" aria-label="Pay holding deposit">
+            Pay holding deposit
+          </button>
+          <p id="lbl-pay-tripwire" class="hint">
+            Smoke stops when Pay is visible. Do not tap it.
+          </p>
+        </div>
+      </section>
+    </main>
+
+    <nav class="bottom" aria-label="Primary">
+      <button type="button" id="nav-inventory" aria-label="Inventory" data-nav="inventory">
+        Inventory
+      </button>
+      <button type="button" id="nav-pipeline" aria-label="Pipeline" data-nav="pipeline">
+        Pipeline
+      </button>
+      <button type="button" id="nav-apply" aria-label="Application" data-nav="apply">
+        Application
+      </button>
+    </nav>
+
+    <script src="app.js"></script>
+  </body>
+</html>

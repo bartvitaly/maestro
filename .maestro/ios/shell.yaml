@@ -1,0 +1,50 @@
+# iOS WKWebView wrapper — same leasing path as android/shell.yaml
+# Maestro iOS sees accessible names only. DOM ids do not resolve.
+#
+# Device lane installs ios/ (bundle id com.example.listings) on the
+# Simulator and launches that app. Thin WKWebView around the static demo at
+# http://127.0.0.1:4173 — not a Capacitor / App Store binary.
+# Must run on the booted Simulator:
+#   maestro --platform ios --device <sim-udid> test .maestro/ios/shell.yaml
+# Host-Chromium fallback: .maestro/ios/shell-web.yaml
+appId: com.example.listings
+name: ios-lease-application
+tags:
+  - ios
+  - smoke
+---
+- launchApp
+- assertVisible: "Inventory"
+- tapOn: "City"
+- tapOn: "Bratislava"
+- tapOn: "Min. bedrooms"
+- tapOn: "2"
+- tapOn: "Search inventory"
+# Compact Simulator / form-heavy layout: unit row can sit below the fold.
+- scrollUntilVisible:
+    element: "Open HL-1042"
+    direction: DOWN
+    timeout: 15000
+- tapOn: "Open HL-1042"
+- assertVisible: "HL-1042"
+- tapOn: "Book viewing"
+- tapOn: "Start application"
+- tapOn: "Legal name"
+- inputText: "Ada Kovacs"
+- tapOn: "Work email"
+- inputText: "ada.kovacs@example.com"
+- tapOn: "Monthly net income"
+- inputText: "2400"
+- tapOn: "Employment"
+- tapOn: "Employed"
+- tapOn: "Income figures are accurate. I accept the holding-deposit terms."
+- tapOn: "Submit application"
+# Deposit card sits under the form + tab bar on the Simulator.
+- scrollUntilVisible:
+    element: "Pay holding deposit"
+    direction: DOWN
+    timeout: 15000
+- assertVisible: "Pay holding deposit"
+# Stop. Do not tap Pay in smoke.
+- tapOn: "Pipeline"
+- assertVisible: "HL-1042"

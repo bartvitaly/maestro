@@ -1,0 +1,36 @@
+# Android *web* path against the local static demo — host Chromium, not the AVD.
+#
+# Maestro `url:` launches host Chromium. The device-lane success path is the
+# installed WebView APK (android/shell.yaml + launchApp, appId com.example.listings).
+# Keep this URL on 127.0.0.1. The emulator WebView loads http://10.0.2.2:4173.
+#
+# Override: maestro test .maestro/android/shell-web.yaml
+url: http://127.0.0.1:4173
+name: android-lease-application-web
+tags:
+  - android
+  - web
+---
+- launchApp
+- assertVisible: "Inventory"
+- tapOn: "City"
+- tapOn: "Bratislava"
+- tapOn: "Min. bedrooms"
+- tapOn: "2"
+- tapOn: "Search inventory"
+- tapOn: "Open HL-1042"
+- tapOn: "Book viewing"
+- tapOn: "Start application"
+- tapOn: "Legal name"
+- inputText: "Ada Kovacs"
+- tapOn: "Work email"
+- inputText: "ada.kovacs@example.com"
+- tapOn: "Monthly net income"
+- inputText: "2400"
+- tapOn: "Employment"
+- tapOn: "Employed"
+- tapOn: "Income figures are accurate. I accept the holding-deposit terms."
+- tapOn: "Submit application"
+- assertVisible: "Pay holding deposit"
+- tapOn: "Pipeline"
+- assertVisible: "HL-1042"

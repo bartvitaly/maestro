@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Harbor Lease — holding deposit card</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <p class="brand">Harbor Lease</p>
+    <h1>Holding deposit</h1>
+    <p class="lede">Same accessible names a Stripe Payment Element exposes on iOS. No live card network.</p>
+    <form id="form-card">
+      <label for="input-card-number">Card number</label>
+      <input id="input-card-number" inputmode="numeric" autocomplete="cc-number" />
+      <label for="input-card-exp">MM / YY</label>
+      <input id="input-card-exp" inputmode="numeric" autocomplete="cc-exp" />
+      <label for="input-card-cvc">CVC</label>
+      <input id="input-card-cvc" inputmode="numeric" autocomplete="cc-csc" />
+      <button type="submit" id="btn-card-continue" aria-label="Continue">Continue</button>
+    </form>
+    <p id="lbl-card-ok" hidden>Card accepted (demo)</p>
+    <script>
+      document.getElementById("form-card").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const number = document.getElementById("input-card-number").value.replace(/\s/g, "");
+        if (number.length < 15) return;
+        document.getElementById("lbl-card-ok").hidden = false;
+      });
+    </script>
+  </body>
+</html>
